@@ -11,8 +11,8 @@ public class KeyBoardOutput : MonoBehaviour {
     private bool cursing = true;
     private bool typing = false;
 
-	// Update is called once per frame
-	public void OnClick () {
+    // Update is called once per frame
+    public void OnClick () {
         typing = true;
         Text Letter = GetComponentInChildren<Text>();
         keyboardText = GameObject.Find("KeyboardText");
@@ -32,6 +32,7 @@ public class KeyBoardOutput : MonoBehaviour {
        keyboardText = GameObject.Find("KeyboardText");
        Text NotepadText = GameObject.FindWithTag("NoteText").GetComponentInChildren<Text>();
        NotepadText.text = keyboardText.GetComponentInChildren<Text>().text;
+        GameObject.FindWithTag("KeyboardCanvas").SetActive(false);
     }
 
     public void changeCase() {
@@ -74,7 +75,7 @@ public class KeyBoardOutput : MonoBehaviour {
 
     public void Update()
     {
-        if(typing == true)
+        /*if(typing == true)
         {
             typingCursorDelay();
         }
@@ -96,7 +97,7 @@ public class KeyBoardOutput : MonoBehaviour {
                     keyboardText.GetComponentInChildren<Text>().text += cursor;
                 }  
             }
-        }
+        }*/
     }
 
 }
