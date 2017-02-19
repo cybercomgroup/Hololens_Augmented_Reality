@@ -6,13 +6,20 @@ using System.Text.RegularExpressions;
 
 public class KeyBoardOutput : MonoBehaviour {
     GameObject keyboardText;
-    private char cursor = '|';
+    private string cursor = "|";
     private float blink_TimeStamp;
     private bool cursing = true;
     private bool typing = false;
+    private bool symbol = false;
 
-	// Update is called once per frame
-	public void OnClick () {
+    // Update is called once per frame
+    public void Start()
+    {
+        keyboardText = GameObject.Find("KeyboardText");
+        keyboardText.GetComponentInChildren<Text>().text = cursor;
+    }
+
+    public void OnClick () {
         typing = true;
         Text Letter = GetComponentInChildren<Text>();
         keyboardText = GameObject.Find("KeyboardText");
@@ -41,7 +48,8 @@ public class KeyBoardOutput : MonoBehaviour {
             if (Regex.Matches(hello[i].text, @"[a-zåäö]").Count == 1) {
                 hello[i].text = hello[i].text.ToUpper();
             } else {
-                hello[i].text = hello[i].text.ToLower();
+                if(hello[i].text.Length == 1)
+                    hello[i].text = hello[i].text.ToLower();
             }
         }
     }
@@ -49,11 +57,11 @@ public class KeyBoardOutput : MonoBehaviour {
     public void backSpace()
     {
         keyboardText = GameObject.Find("KeyboardText");
-        if (keyboardText.GetComponentInChildren<Text>().text.Length != 0)
+        if (keyboardText.GetComponentInChildren<Text>().text.Length != 1)
         {
             string text = keyboardText.GetComponentInChildren<Text>().text;
-            text = text.Substring(0, text.Length - 1);
-            keyboardText.GetComponentInChildren<Text>().text = text;
+            text = text.Substring(0, text.Length - 2);
+            keyboardText.GetComponentInChildren<Text>().text = text + cursor;
         } else {
             Debug.Log("Textfield Empty");
         }
@@ -62,19 +70,62 @@ public class KeyBoardOutput : MonoBehaviour {
     public void newRow()
     {
         keyboardText = GameObject.Find("KeyboardText");
-        keyboardText.GetComponentInChildren<Text>().text = keyboardText.GetComponentInChildren<Text>().text + '\n'; 
+        string text = keyboardText.GetComponentInChildren<Text>().text;
+        if (text.Length > 0)
+        {
+            text = text.Substring(0, text.Length - 1);
+        }
+        keyboardText.GetComponentInChildren<Text>().text = text + "\n" + cursor; 
     }
 
-   IEnumerator typingCursorDelay()
+    public void symbols()
+    {
+        GameObject keyboard = GameObject.Find("Keyboard");
+        string[] symbols = { "+", "*", "/", "=", "%", "_", "€", "£", "$", "[", "]", "#", "¤", "&", "(", ")", "{", "}",
+                            "^", "¨", "~", "\"", "|", "´", "°", "<", ">", ";","½"};
+        string[] letters = { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å", "a", "s", "d", "f", "g", "h", "j",
+                            "k", "l", "ö", "ä", "z", "x", "c", "v", "b", "n", "m"};
+        Text[] hello = keyboard.GetComponentsInChildren<Text>();
+        int j = 0;
+        for (int i = 0; i < hello.Length; i++)
+        {
+            if (hello[i].transform.parent.tag == "Letter" && symbol != true)
+            {
+                if(symbols[j].Equals("½"))
+                {
+                    symbol = true;
+                }
+                hello[i].text = symbols[j];
+                j++;
+            } else if (hello[i].transform.parent.tag == "Letter")
+            {
+                if(letters[j].Equals("m"))
+                {
+                    symbol = false;
+                }
+                hello[i].text = letters[j];
+                j++;
+            }
+        }
+    } 
+
+    public void navigate()
+    {
+        keyboardText = GameObject.Find("KeyboardText");
+        string text = keyboardText.GetComponentInChildren<Text>().text;
+        text = text.Substring(0, text.Length - 1);
+    }
+
+   /*IEnumerator typingCursorDelay()
     {
         yield return new WaitForSeconds(1);
         typing = false;
 
-    }
+    }*/
 
     public void Update()
     {
-        if(typing == true)
+        /*if(typing == true)
         {
             typingCursorDelay();
         }
@@ -96,7 +147,7 @@ public class KeyBoardOutput : MonoBehaviour {
                     keyboardText.GetComponentInChildren<Text>().text += cursor;
                 }  
             }
-        }
+        }*/
     }
 
 }
