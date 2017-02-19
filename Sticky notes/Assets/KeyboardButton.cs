@@ -2,7 +2,7 @@
 using HoloToolkit.Unity.InputModule;
 using UnityEngine.UI;
 
-public class Keyboard : MonoBehaviour, IInputClickHandler
+public class KeyboardButton : MonoBehaviour, IInputClickHandler
 {
     Vector3 originalPosition;
     GameObject keyboard;

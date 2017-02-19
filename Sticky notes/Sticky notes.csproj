@@ -331,7 +331,7 @@
     <Compile Include="Assets\HoloToolkit\Utilities\Tests\Scripts\TextToSpeechOnTap.cs" />
     <Compile Include="Assets\InteractibleAction.cs" />
     <Compile Include="Assets\KeyBoardOutput.cs" />
-    <Compile Include="Assets\Keyboard.cs" />
+    <Compile Include="Assets\KeyboardButton.cs" />
     <Compile Include="Assets\NoteCommands.cs" />
   </ItemGroup>
   <ItemGroup>
