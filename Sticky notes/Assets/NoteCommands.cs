@@ -1,39 +1,29 @@
 ﻿using UnityEngine;
+using HoloToolkit.Unity.InputModule;
 using UnityEngine.UI;
 
-public class NoteCommands : MonoBehaviour
+public class NoteCommands : MonoBehaviour, IInputClickHandler
 {
     Vector3 originalPosition;
-    TouchScreenKeyboard keyboard;
-    public static string keyboardText = "";
-
-
+    GameObject move;
+    GameObject edit;
+    GameObject keyboard;
     // Use this for initialization
     void Start()
     {
-        // Grab the original local position of the sphere when the app starts.
-        //originalPosition = this.transform.localPosition;
-        //keyboard = new TouchScreenKeyboard("", TouchScreenKeyboardType.Default, false, false, false, false, "Write here");
-    }
-
-    // Called by GazeGestureManager when the user performs a Selsect gesture
-    void OnSelect()
-    {
-        keyboard = TouchScreenKeyboard.Open("madafaka", TouchScreenKeyboardType.Default, false, false, false, false);
+        move = GameObject.Find("MoveCanvas");
+        move.SetActive(false);
+        edit = GameObject.Find("EditCanvas");
+        edit.SetActive(false);
+        keyboard = GameObject.Find("KeyboardCanvas");
+        keyboard.SetActive(false);
 
     }
 
-    private void Update()
+    public virtual void OnInputClicked(InputEventData eventData)
     {
-        if (TouchScreenKeyboard.visible == false && keyboard != null)
-        {
-            if (keyboard.done == true)
-            {
-                keyboardText = keyboard.text;
-                keyboard = null;
-            }
-        }
-        Text textObject = GetComponentInChildren<Text>();
-        textObject.text = keyboardText;
+        Debug.Log("Clicked for menu");
+        move.SetActive(true);
+        edit.SetActive(true);
     }
 }

@@ -39,10 +39,11 @@ public class KeyBoardOutput : MonoBehaviour {
        keyboardText = GameObject.Find("KeyboardText");
        Text NotepadText = GameObject.FindWithTag("NoteText").GetComponentInChildren<Text>();
        NotepadText.text = keyboardText.GetComponentInChildren<Text>().text;
+        GameObject.FindWithTag("KeyboardCanvas").SetActive(false);
     }
 
     public void changeCase() {
-        GameObject keyboard = GameObject.Find("Keyboard");
+        GameObject keyboard = GameObject.Find("KeyboardCanvas");
         Text[] hello = keyboard.GetComponentsInChildren<Text>();
         for(int i = 0; i < hello.Length; i++) {
             if (Regex.Matches(hello[i].text, @"[a-zåäö]").Count == 1) {
@@ -80,7 +81,7 @@ public class KeyBoardOutput : MonoBehaviour {
 
     public void symbols()
     {
-        GameObject keyboard = GameObject.Find("Keyboard");
+        GameObject keyboard = GameObject.Find("KeyboardCanvas");
         string[] symbols = { "+", "*", "/", "=", "%", "_", "€", "£", "$", "[", "]", "#", "¤", "&", "(", ")", "{", "}",
                             "^", "¨", "~", "\"", "|", "´", "°", "<", ">", ";","½"};
         string[] letters = { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å", "a", "s", "d", "f", "g", "h", "j",
