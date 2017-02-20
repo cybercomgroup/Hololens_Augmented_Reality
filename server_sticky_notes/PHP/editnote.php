@@ -1,10 +1,9 @@
 <?php
 
-$servername = "libanaden.com.mysql";
-$server_username = "libanaden_com_notes";
-$server_password = "Dreamteam";
-$dbName = "libanaden_com_notes";
-
+$servername = ""; // server name
+$server_username = ""; // username for server
+$server_password = ""; // insert server password
+$dbName = ""; // insert database name
 
 		$id = $_POST["id"];
 		$content = $_POST["content"];
