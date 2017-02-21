@@ -1,0 +1,8 @@
+#Hololens git ignore file
+/*
+!/Assets
+!/ProjectSettings
+!/MySQL
+!/PHP
+!.gitignore
+!README.md
