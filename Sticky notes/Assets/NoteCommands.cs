@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class NoteCommands : MonoBehaviour, IInputClickHandler
 {
-    Vector3 originalPosition;
-    GameObject move;
-    GameObject edit;
-    GameObject keyboard;
+    private Vector3 originalPosition;
+    private GameObject move;
+    private GameObject edit;
+    public GameObject keyboard;
     // Use this for initialization
     void Start()
     {

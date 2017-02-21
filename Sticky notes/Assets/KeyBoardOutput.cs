@@ -39,7 +39,7 @@ public class KeyBoardOutput : MonoBehaviour {
        keyboardText = GameObject.Find("KeyboardText");
        Text NotepadText = GameObject.FindWithTag("NoteText").GetComponentInChildren<Text>();
        NotepadText.text = keyboardText.GetComponentInChildren<Text>().text;
-        GameObject.FindWithTag("KeyboardCanvas").SetActive(false);
+        GameObject.Find("KeyboardCanvas").SetActive(false);
     }
 
     public void changeCase() {
