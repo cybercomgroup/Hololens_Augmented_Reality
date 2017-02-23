@@ -3,27 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using System.Text;
 
 public class KeyBoardOutput : MonoBehaviour {
     GameObject keyboardText;
     private string cursor = "|";
     private float blink_TimeStamp;
-    private bool cursing = true;
-    private bool typing = false;
+    static float typing_TimeStamp;
+    private bool cursor_set = true;
     private bool symbol = false;
+    public static bool typing = false;
 
-    // Update is called once per frame
+    //Initilizes the keyboard with the text cursor
     public void Start()
     {
         keyboardText = GameObject.Find("KeyboardText");
         keyboardText.GetComponentInChildren<Text>().text = cursor;
     }
 
+    //Used to register the cicks of letters, symbols and space.
+    //Gets the text in the text field and adds the text of the button to it.
     public void OnClick () {
-        typing = true;
         Text Letter = GetComponentInChildren<Text>();
         keyboardText = GameObject.Find("KeyboardText");
         string text = keyboardText.GetComponentInChildren<Text>().text;
+        //typing_TimeStamp = Time.time;
         if (text.Length > 0)
         {
             text = text.Substring(0, text.Length - 1);
@@ -35,6 +39,8 @@ public class KeyBoardOutput : MonoBehaviour {
         }
 	}
 
+    //Registers the click of the Enter button, moves the text from the textfield to any text field you supply
+    //then simply removes the keyboard from the view.
     public void Enter() {
        keyboardText = GameObject.Find("KeyboardText");
        Text NotepadText = GameObject.FindWithTag("NoteText").GetComponentInChildren<Text>();
@@ -42,6 +48,7 @@ public class KeyBoardOutput : MonoBehaviour {
         GameObject.Find("KeyboardCanvas").SetActive(false);
     }
 
+    //Changes the case of letters, from upper to lower and vice versa.
     public void changeCase() {
         GameObject keyboard = GameObject.Find("KeyboardCanvas");
         Text[] hello = keyboard.GetComponentsInChildren<Text>();
@@ -55,6 +62,7 @@ public class KeyBoardOutput : MonoBehaviour {
         }
     }
 
+    //A simple backspace function, removes the last entered character.
     public void backSpace()
     {
         keyboardText = GameObject.Find("KeyboardText");
@@ -68,6 +76,7 @@ public class KeyBoardOutput : MonoBehaviour {
         }
     }
 
+    //Creates a new row.
     public void newRow()
     {
         keyboardText = GameObject.Find("KeyboardText");
@@ -79,6 +88,7 @@ public class KeyBoardOutput : MonoBehaviour {
         keyboardText.GetComponentInChildren<Text>().text = text + "\n" + cursor; 
     }
 
+    //Changes the letters to symbols and back.
     public void symbols()
     {
         GameObject keyboard = GameObject.Find("KeyboardCanvas");
@@ -110,6 +120,8 @@ public class KeyBoardOutput : MonoBehaviour {
         }
     } 
 
+    //Will be used to navigate the text string so you can edit the text more freely.
+    //Needs to be implemented
     public void navigate()
     {
         keyboardText = GameObject.Find("KeyboardText");
@@ -117,38 +129,42 @@ public class KeyBoardOutput : MonoBehaviour {
         text = text.Substring(0, text.Length - 1);
     }
 
-   /*IEnumerator typingCursorDelay()
+  //Used to make the Cursor blink to indicate where you are typing
+  /*  public void CursorBlink()
     {
-        yield return new WaitForSeconds(1);
-        typing = false;
-
-    }*/
-
-    public void Update()
-    {
-        /*if(typing == true)
+        StringBuilder sb = new StringBuilder();
+        if(typing_TimeStamp > 0)
         {
-            typingCursorDelay();
+            typing_TimeStamp--;
         }
-        if(Time.time - blink_TimeStamp >= 0.5 && typing == false)
+        if (Time.time - blink_TimeStamp >= 0.5 && Time.time - typing_TimeStamp >= 5)
         {
             blink_TimeStamp = Time.time;
             keyboardText = GameObject.Find("KeyboardText");
-            string text = keyboardText.GetComponentInChildren<Text>().text;
-            if (text.Length > 0 && cursing == true)
+            sb.Append(keyboardText.GetComponentInChildren<Text>().text);
+            if (sb.Length > 0 && cursor_set == true)
             {
-                cursing = false;
-                text = text.Substring(0, text.Length - 1);
-                keyboardText.GetComponentInChildren<Text>().text = text;
-            } else
-            {
-                cursing = true;
-                if(!keyboardText.GetComponentInChildren<Text>().text.Contains("|"))
-                {
-                    keyboardText.GetComponentInChildren<Text>().text += cursor;
-                }  
+                cursor_set = false;
+                keyboardText.GetComponentInChildren<Text>().text = keyboardText.GetComponentInChildren<Text>().text.Replace("|", "");
             }
-        }*/
+            else
+            {
+                cursor_set = true;
+                if (!keyboardText.GetComponentInChildren<Text>().text.Contains("|"))
+                {
+                    keyboardText.GetComponentInChildren<Text>().text = sb.Insert(sb.Length, cursor).ToString();
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+     }*/
+
+    public void Update()
+    {
+        //CursorBlink();
     }
 
 }
