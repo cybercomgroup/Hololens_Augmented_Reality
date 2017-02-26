@@ -25,6 +25,5 @@ public class NoteCommands : MonoBehaviour, IInputClickHandler
         Debug.Log("Clicked for menu");
         move.SetActive(true);
         edit.SetActive(true);
-        keyboard.SetActive(true);
-    }
+   }
 }

@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114193939822982814}
   - component: {fileID: 114953662029140404}
   - component: {fileID: 114103665495488134}
+  - component: {fileID: 114541155181869830}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -808,6 +809,38 @@ MonoBehaviour:
   autoStartObserver: 1
   drawVisualMeshes: 1
   castShadows: 0
+--- !u!114 &114541155181869830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073881161640376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2795b3e072e1745a4f8c670d64284f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RecognizerStart: 0
+  KeywordsAndResponses:
+  - Keyword: Create new note
+    KeyCode: 0
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114841387491082598, guid: 3b6a438b056888c488e297a6991e0334,
+            type: 2}
+          m_MethodName: makeNew
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!114 &114588180127776710
 MonoBehaviour:
   m_ObjectHideFlags: 1

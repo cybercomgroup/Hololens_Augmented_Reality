@@ -2,19 +2,19 @@
 using HoloToolkit.Unity.InputModule;
 using UnityEngine.UI;
 
-public class MakeNew : MonoBehaviour, IInputClickHandler
+public class MakeNew : MonoBehaviour
 {
     private Vector3 originalPosition;
     public GameObject Notepad;
-    // Use this for initializationS
+    // Use this for initialization
     void Start()
     {
     
 
     }
 
-    public virtual void OnInputClicked(InputEventData eventData)
+    public void makeNew()
     {
-        Instantiate(Notepad, transform.position, Quaternion.identity);
+        Instantiate(Notepad, Camera.main.transform.forward, Quaternion.identity);
     }
 }
