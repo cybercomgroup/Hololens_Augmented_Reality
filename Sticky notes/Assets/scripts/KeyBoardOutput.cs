@@ -8,6 +8,7 @@ using System.Text;
 
 public class KeyBoardOutput : MonoBehaviour {
     GameObject keyboardText;
+    public GameObject notepad;
     private string cursor = "|";
     private float blink_TimeStamp;
     static float typing_TimeStamp;
@@ -18,10 +19,15 @@ public class KeyBoardOutput : MonoBehaviour {
     //Initilizes the keyboard with the text cursor
     public void Start()
     {
-        keyboardText = GameObject.Find("KeyboardText");
-        keyboardText.GetComponentInChildren<Text>().text = cursor;
+        
     }
 
+    public void createKeyboard(GameObject notepad)
+    {
+        keyboardText = notepad.transform.Find("KeyboardText").gameObject;
+        keyboardText.GetComponentInChildren<Text>().text = cursor;
+    }
+    
     //Used to register the cicks of letters, symbols and space.
     //Gets the text in the text field and adds the text of the button to it.
     public void OnClick () {
@@ -44,15 +50,15 @@ public class KeyBoardOutput : MonoBehaviour {
     //then simply removes the keyboard from the view.
     public void Enter() {
        keyboardText = GameObject.Find("KeyboardText");
-       Text NotepadText = GameObject.FindWithTag("NoteText").GetComponentInChildren<Text>();
+       Text NotepadText = notepad.GetComponentInChildren<Text>();
        NotepadText.text = keyboardText.GetComponentInChildren<Text>().text;
-        GameObject.Find("KeyboardCanvas").SetActive(false);
+        Destroy(this.gameObject);
     }
 
     //Changes the case of letters, from upper to lower and vice versa.
     public void changeCase() {
-        GameObject keyboard = GameObject.Find("KeyboardCanvas");
-        Text[] hello = keyboard.GetComponentsInChildren<Text>();
+        //GameObject keyboard = GameObject.Find("KeyboardCanvas");
+        Text[] hello = this.GetComponentsInChildren<Text>();
         for(int i = 0; i < hello.Length; i++) {
             if (Regex.Matches(hello[i].text, @"[a-zåäö]").Count == 1) {
                 hello[i].text = hello[i].text.ToUpper();
@@ -92,12 +98,12 @@ public class KeyBoardOutput : MonoBehaviour {
     //Changes the letters to symbols and back.
     public void symbols()
     {
-        GameObject keyboard = GameObject.Find("KeyboardCanvas");
+        //GameObject keyboard = GameObject.Find("KeyboardCanvas");
         string[] symbols = { "+", "*", "/", "=", "%", "_", "€", "£", "$", "[", "]", "#", "¤", "&", "(", ")", "{", "}",
                             "^", "¨", "~", "\"", "|", "´", "°", "<", ">", ";","½"};
         string[] letters = { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å", "a", "s", "d", "f", "g", "h", "j",
                             "k", "l", "ö", "ä", "z", "x", "c", "v", "b", "n", "m"};
-        Text[] hello = keyboard.GetComponentsInChildren<Text>();
+        Text[] hello = this.GetComponentsInChildren<Text>();
         int j = 0;
         for (int i = 0; i < hello.Length; i++)
         {
