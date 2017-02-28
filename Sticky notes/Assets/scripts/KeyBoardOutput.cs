@@ -50,15 +50,15 @@ public class KeyBoardOutput : MonoBehaviour {
     //then simply removes the keyboard from the view.
     public void Enter() {
        keyboardText = GameObject.Find("KeyboardText");
-       Text NotepadText = notepad.GetComponentInChildren<Text>();
+       Text NotepadText = notepad.transform.GetChild(0).GetComponentInChildren<Text>();
        NotepadText.text = keyboardText.GetComponentInChildren<Text>().text;
-        Destroy(this.gameObject);
+       Destroy(this.gameObject);
     }
 
     //Changes the case of letters, from upper to lower and vice versa.
     public void changeCase() {
         //GameObject keyboard = GameObject.Find("KeyboardCanvas");
-        Text[] hello = this.GetComponentsInChildren<Text>();
+        Text[] hello = this.transform.parent.gameObject.GetComponentsInChildren<Text>();
         for(int i = 0; i < hello.Length; i++) {
             if (Regex.Matches(hello[i].text, @"[a-zåäö]").Count == 1) {
                 hello[i].text = hello[i].text.ToUpper();
@@ -103,7 +103,7 @@ public class KeyBoardOutput : MonoBehaviour {
                             "^", "¨", "~", "\"", "|", "´", "°", "<", ">", ";","½"};
         string[] letters = { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å", "a", "s", "d", "f", "g", "h", "j",
                             "k", "l", "ö", "ä", "z", "x", "c", "v", "b", "n", "m"};
-        Text[] hello = this.GetComponentsInChildren<Text>();
+        Text[] hello = this.transform.parent.gameObject.GetComponentsInChildren<Text>();
         int j = 0;
         for (int i = 0; i < hello.Length; i++)
         {

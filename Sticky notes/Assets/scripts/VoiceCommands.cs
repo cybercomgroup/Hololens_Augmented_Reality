@@ -7,6 +7,7 @@ public class VoiceCommands : MonoBehaviour
     private Vector3 originalPosition;
     public GameObject Notepad;
     public GameObject keyboard;
+    private bool keyboardCreated = false;
     // Use this for initialization
 
     
@@ -15,9 +16,10 @@ public class VoiceCommands : MonoBehaviour
     {
         RaycastHit hitInfo;
         var layermask = 1 << 31;
-        if (GazeManager.Instance.IsGazingAtObject && !GameObject.Find("KeyBoard") )
+        if (GazeManager.Instance.IsGazingAtObject && !keyboardCreated)
         {
             Instantiate(keyboard, Camera.main.transform.position + 2f  * Camera.main.transform.forward, Quaternion.identity).GetComponent<KeyBoardOutput>().notepad = GazeManager.Instance.HitObject ;
+            keyboardCreated = true;
         }
 
     }
