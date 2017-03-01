@@ -2,19 +2,14 @@
 using HoloToolkit.Unity.InputModule;
 using UnityEngine.UI;
 
-public class NoteCommands : MonoBehaviour, IInputClickHandler
+public class NoteCommands : MonoBehaviour
 {
     private Vector3 originalPosition;
     private GameObject move;
+    public int noteId;
+
     // Use this for initialization
     void Start()
     {
-
     }
-
-    public virtual void OnInputClicked(InputEventData eventData)
-    {
-        Debug.Log("Clicked for menu");
-        move.SetActive(true);
-   }
 }

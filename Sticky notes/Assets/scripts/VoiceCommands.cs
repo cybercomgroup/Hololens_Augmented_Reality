@@ -1,31 +1,71 @@
 ﻿using UnityEngine;
+using System;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine.UI;
+using conn;
+using selectnotes;
+using System.Collections.Generic;
 
 public class VoiceCommands : MonoBehaviour
 {
-    private Vector3 originalPosition;
     public GameObject Notepad;
     public GameObject keyboard;
-    private bool keyboardCreated = false;
+    public static bool keyboardCreated = false;
+    private connect dbconnection;
+    private select dbselect;
+
     // Use this for initialization
 
-    
+    public void Start()
+    {
+        dbconnection = new connect();
+        dbselect = new select();
+        
+    }
 
     public void editNote()
     {
-        RaycastHit hitInfo;
-        var layermask = 1 << 31;
         if (GazeManager.Instance.IsGazingAtObject && !keyboardCreated)
         {
-            Instantiate(keyboard, Camera.main.transform.position + 2f  * Camera.main.transform.forward, Quaternion.identity).GetComponent<KeyBoardOutput>().notepad = GazeManager.Instance.HitObject ;
             keyboardCreated = true;
+            KeyBoardOutput.createKeyboard(GazeManager.Instance.HitObject);
         }
 
     }
 
     public void makeNew()
     {
-        Instantiate(Notepad, Camera.main.transform.position + 2f * Camera.main.transform.forward, Quaternion.identity);
+        StartCoroutine(dbconnection.insertString((id) =>
+        {
+            GameObject notepad = Instantiate(Notepad, Camera.main.transform.position + 2f * Camera.main.transform.forward, Quaternion.identity) as GameObject;
+            notepad.GetComponentInChildren<NoteCommands>().noteId = Int32.Parse(id);
+        }, ""));
+      
+        
+            
+    }
+
+    public void deleteNote()
+    {
+        if (GazeManager.Instance.IsGazingAtObject)
+        {
+            Destroy(GazeManager.Instance.HitObject.transform.parent.parent.gameObject);
+        }
+        dbconnection.deleteNote(GazeManager.Instance.HitObject.transform.parent.parent.GetComponent<NoteCommands>().noteId.ToString());
+    }
+
+    public void getNotes()
+    {
+        StartCoroutine(dbselect.Start1((note) => {
+        GameObject notepad;
+            for (int i = 0; i < note.Notes.Count; i++)
+            {
+                notepad = Instantiate(Notepad, Camera.main.transform.position + Camera.main.transform.right * (0.3f * i) + 2f * Camera.main.transform.forward, Quaternion.identity) as GameObject;
+                notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = note.Notes[i].content;
+                notepad.GetComponentInChildren<NoteCommands>().noteId = i + 1;
+            }
+        }));
+      
+
     }
 }

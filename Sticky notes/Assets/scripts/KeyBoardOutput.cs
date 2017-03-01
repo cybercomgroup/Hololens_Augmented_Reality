@@ -4,28 +4,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System.Text;
+using conn;
 //using System.Timers;
 
 public class KeyBoardOutput : MonoBehaviour {
-    GameObject keyboardText;
-    public GameObject notepad;
-    private string cursor = "|";
-    private float blink_TimeStamp;
-    static float typing_TimeStamp;
-    private bool cursor_set = true;
+    private static GameObject keyboardText;
+    private static GameObject notepad;
+    private static GameObject keyboard;
+    private static string cursor = "|";
+
+    private connect dbconnection;
+
+    //private float blink_TimeStamp;
+    //static float typing_TimeStamp;
+    //private bool cursor_set = true;
     private bool symbol = false;
-    public static bool typing = false;
+    //public static bool typing = false;
 
     //Initilizes the keyboard with the text cursor
     public void Start()
     {
-        
+        dbconnection = new connect();
     }
 
-    public void createKeyboard(GameObject notepad)
+    public static void createKeyboard(GameObject notepadGaze)
     {
-        keyboardText = notepad.transform.Find("KeyboardText").gameObject;
-        keyboardText.GetComponentInChildren<Text>().text = cursor;
+        keyboard = Instantiate(Resources.Load("KeyBoard"), Camera.main.transform.position + 1f * Camera.main.transform.forward, Quaternion.identity) as GameObject;
+        keyboardText = GameObject.Find("KeyboardText");
+       
+        notepad = notepadGaze;
+        keyboardText.GetComponentInChildren<Text>().text = notepad.GetComponent<Text>().text + cursor;
+
     }
     
     //Used to register the cicks of letters, symbols and space.
@@ -49,10 +58,15 @@ public class KeyBoardOutput : MonoBehaviour {
     //Registers the click of the Enter button, moves the text from the textfield to any text field you supply
     //then simply removes the keyboard from the view.
     public void Enter() {
-       keyboardText = GameObject.Find("KeyboardText");
-       Text NotepadText = notepad.transform.GetChild(0).GetComponentInChildren<Text>();
-       NotepadText.text = keyboardText.GetComponentInChildren<Text>().text;
-       Destroy(this.gameObject);
+        
+        keyboardText = GameObject.Find("KeyboardText");
+        Destroy(keyboard.gameObject);
+        VoiceCommands.keyboardCreated = false;
+        string text = keyboardText.GetComponentInChildren<Text>().text;
+        text = text.Substring(0, text.Length - 1);
+        notepad.GetComponent<Text>().text = text;
+        Debug.Log(notepad.transform.parent.parent.GetComponent<NoteCommands>().noteId.ToString());
+        dbconnection.editNote(notepad.transform.parent.parent.gameObject.GetComponent<NoteCommands>().noteId.ToString(), text);
     }
 
     //Changes the case of letters, from upper to lower and vice versa.
@@ -172,6 +186,9 @@ public class KeyBoardOutput : MonoBehaviour {
     public void Update()
     {
         //CursorBlink();
+       
     }
 
+   
 }
+

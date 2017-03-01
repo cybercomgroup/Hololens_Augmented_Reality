@@ -11,7 +11,7 @@ using UnityEngine.UI;
  **/
 
 
-namespace sellect
+namespace selectnotes
 {
 
     [System.Serializable]
@@ -46,17 +46,14 @@ namespace sellect
         public Text txt;
         string url = "http://libanaden.com/selectAll.php";
 
-        public IEnumerator Start1()
+        public IEnumerator Start1(System.Action<Notelist> callback)
         {
             WWW www = new WWW(url);
             yield return www;
             if (www.error == null)
             {
                 Notelist list = Notelist.CreateFromJSON(www.text);
-                for (int i = 0; i < list.Notes.Count; i++)
-                {
-                    Debug.Log(list.Notes[i].content);
-                }
+                callback(list);
             }
 
             else

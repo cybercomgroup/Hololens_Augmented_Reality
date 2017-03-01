@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45011288, g: 0.50015485, b: 0.57545817, a: 1}
+  m_IndirectSpecularColor: {r: 0.4501136, g: 0.50015557, b: 0.5754593, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -307,7 +307,7 @@ Prefab:
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
@@ -317,6 +317,11 @@ Prefab:
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[2].Response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Response.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4873253090907854, guid: 3418407910415e44ca5e666938c18c72, type: 2}
@@ -359,7 +364,7 @@ Prefab:
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[1].Keyword
-      value: Edit new note
+      value: Edit note
       objectReference: {fileID: 0}
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
@@ -395,18 +400,17 @@ Prefab:
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[2].Keyword
-      value: Create new note
+      value: Remove note
       objectReference: {fileID: 0}
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[2].Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 114841387491082598, guid: 3b6a438b056888c488e297a6991e0334,
-        type: 2}
+      objectReference: {fileID: 335050241}
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[2].Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: makeNew
+      value: deleteNote
       objectReference: {fileID: 0}
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
@@ -442,6 +446,42 @@ Prefab:
     - target: {fileID: 1734131939947122, guid: 3418407910415e44ca5e666938c18c72, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Keyword
+      value: Get all notes
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 335050241}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: getNotes
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Response.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[3].Response.m_TypeName
+      value: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3418407910415e44ca5e666938c18c72, type: 2}

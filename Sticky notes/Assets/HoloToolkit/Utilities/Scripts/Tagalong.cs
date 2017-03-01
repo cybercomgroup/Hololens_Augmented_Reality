@@ -48,6 +48,8 @@ namespace HoloToolkit.Unity
         [Tooltip("Useful for visualizing the Raycasts used for determining the depth to place the Tagalong. Set to 'None' to disable.")]
         public Light DebugPointLight;
 
+        private bool isMoving = false;
+
         protected override void Start()
         {
             base.Start();
@@ -73,6 +75,8 @@ namespace HoloToolkit.Unity
             {
                 gameObject.AddComponent<FixedAngularSize>();
             }
+
+            isMoving = true;
         }
 
         protected override void Update()
@@ -92,6 +96,65 @@ namespace HoloToolkit.Unity
                     TagalongDistance = Mathf.Min(defaultTagalongDistance, Vector3.Distance(Camera.main.transform.position, newPosition));
                 }
             }
+            if (isMoving)
+            {
+                move();
+            }
+        }
+
+        public void move()
+        {
+            var headPosition = Camera.main.transform.position;
+            var gazeDirection = Camera.main.transform.forward;
+            Vector3 position;
+            Quaternion orientation;
+            RaycastHit hitInfo;
+            var layermask = 1 << 31;
+            if (Physics.Raycast(headPosition, gazeDirection, out hitInfo, 30.0f, layermask))
+            {
+                position = hitInfo.point;
+                orientation = Quaternion.LookRotation(-hitInfo.normal);
+
+                float wallInclinationThreshold = 10.0F;
+
+                Vector3 normalVerticalProjection = new Vector3(0.0F, hitInfo.normal.y, 0.0F);
+                Vector3 normalHorizontalProjection = new Vector3(hitInfo.normal.x, 0.0F, hitInfo.normal.z);
+
+                bool isVertical = normalHorizontalProjection.magnitude / normalVerticalProjection.magnitude > wallInclinationThreshold;
+                if (isVertical)
+                {
+                    //Debug.Log("Wall");
+                    orientation = Quaternion.LookRotation(-hitInfo.normal);
+                }
+                else
+                {
+                    bool isHorizontal = normalVerticalProjection.magnitude / normalHorizontalProjection.magnitude > wallInclinationThreshold;
+                    if (isHorizontal)
+                    {
+                        if (hitInfo.normal.y > 0)
+                        {
+                            //Debug.Log("Floor");
+                            orientation = Quaternion.LookRotation(-hitInfo.normal, Camera.main.transform.forward);
+                        }
+                        else
+                        {
+                            //Debug.Log("Roof");
+                            orientation = Quaternion.LookRotation(-hitInfo.normal, -Camera.main.transform.forward);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                
+                position = headPosition + 1f * gazeDirection; //2m in front
+                orientation = Camera.main.transform.localRotation; // facing user
+                orientation.x = 0;
+                orientation.z = 0;
+            }
+
+            transform.position = Vector3.Lerp(transform.position, position, 0.1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, orientation, 0.1f);
         }
 
         protected override bool CalculateTagalongTargetPosition(Vector3 fromPosition, out Vector3 toPosition)
@@ -396,6 +459,10 @@ namespace HoloToolkit.Unity
             DebugDrawLine(draw, cameraPosition, recalculatedPointOnFrustum, Color.red);
             DebugDrawLine(draw, cameraPosition, calculatedPosition, Color.cyan);
         }
+
+       
 #endif // UNITY_EDITOR
     }
+
+
 }

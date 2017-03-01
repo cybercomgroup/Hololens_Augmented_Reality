@@ -1,23 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net;
 
 namespace conn
 {
+
+    [System.Serializable]
 
     public class connect
     {
         string deleteURL = "http://libanaden.com/deleteNote.php";
         string insertURL = "http://libanaden.com/insertData.php";
         string editURL = "http://libanaden.com/editnote.php";
+        public string id;
 
 
-        public void insertString(string user, string note)
+        public IEnumerator insertString(System.Action<string> callback, string note)
         {
             WWWForm form = new WWWForm();
-            form.AddField("user", user);
+            //form.AddField("user", user);
             form.AddField("content", note);
             WWW www = new WWW(insertURL, form);
+            yield return www;
+            callback(www.text);
+            
         }
 
         public void deleteNote(string id)
@@ -35,6 +42,5 @@ namespace conn
             WWW www = new WWW(editURL, form);
         }
     }
-
 
 }

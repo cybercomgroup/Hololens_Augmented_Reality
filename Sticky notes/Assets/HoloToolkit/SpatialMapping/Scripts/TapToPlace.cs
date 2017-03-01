@@ -131,6 +131,7 @@ namespace HoloToolkit.Unity.SpatialMapping
             // If the user is in placing mode, display the spatial mapping mesh.
             if (IsBeingPlaced)
             {
+                SpatialMappingManager.Instance.StartObserver();
                 spatialMappingManager.DrawVisualMeshes = true;
 
                 Debug.Log(gameObject.name + " : Removing existing world anchor if any.");
@@ -141,6 +142,7 @@ namespace HoloToolkit.Unity.SpatialMapping
             else
             {
                 spatialMappingManager.DrawVisualMeshes = false;
+                SpatialMappingManager.Instance.StopObserver();
                 // Add world anchor when object placement is done.
                 anchorManager.AttachAnchor(gameObject, SavedAnchorFriendlyName);
             }
