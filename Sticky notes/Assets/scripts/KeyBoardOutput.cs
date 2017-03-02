@@ -33,7 +33,7 @@ public class KeyBoardOutput : MonoBehaviour {
         keyboardText = GameObject.Find("KeyboardText");
        
         notepad = notepadGaze;
-        keyboardText.GetComponentInChildren<Text>().text = notepad.GetComponent<Text>().text + cursor;
+        keyboardText.GetComponentInChildren<Text>().text = notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text + cursor;
 
     }
     
@@ -58,15 +58,14 @@ public class KeyBoardOutput : MonoBehaviour {
     //Registers the click of the Enter button, moves the text from the textfield to any text field you supply
     //then simply removes the keyboard from the view.
     public void Enter() {
-        
+        Debug.Log(notepad.transform.GetChild(0).GetChild(0).name);
         keyboardText = GameObject.Find("KeyboardText");
         Destroy(keyboard.gameObject);
         VoiceCommands.keyboardCreated = false;
         string text = keyboardText.GetComponentInChildren<Text>().text;
         text = text.Substring(0, text.Length - 1);
-        notepad.GetComponent<Text>().text = text;
-        Debug.Log(notepad.transform.parent.parent.GetComponent<NoteCommands>().noteId.ToString());
-        dbconnection.editNote(notepad.transform.parent.parent.gameObject.GetComponent<NoteCommands>().noteId.ToString(), text);
+        notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = text;
+        dbconnection.editNote(notepad.transform.GetChild(0).gameObject.GetComponent<NoteCommands>().noteId.ToString(), text);
     }
 
     //Changes the case of letters, from upper to lower and vice versa.

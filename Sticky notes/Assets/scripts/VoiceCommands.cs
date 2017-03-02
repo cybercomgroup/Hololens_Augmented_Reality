@@ -37,7 +37,8 @@ public class VoiceCommands : MonoBehaviour
     {
         StartCoroutine(dbconnection.insertString((id) =>
         {
-            GameObject notepad = Instantiate(Notepad, Camera.main.transform.position + 2f * Camera.main.transform.forward, Quaternion.identity) as GameObject;
+            GameObject notepad = Instantiate(Notepad, Camera.main.transform.position + 2f * Camera.main.transform.forward , Quaternion.identity) as GameObject;
+            notepad.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position);
             notepad.GetComponentInChildren<NoteCommands>().noteId = Int32.Parse(id);
         }, ""));
       
@@ -49,9 +50,9 @@ public class VoiceCommands : MonoBehaviour
     {
         if (GazeManager.Instance.IsGazingAtObject)
         {
-            Destroy(GazeManager.Instance.HitObject.transform.parent.parent.gameObject);
+            Destroy(GazeManager.Instance.HitObject.gameObject);
         }
-        dbconnection.deleteNote(GazeManager.Instance.HitObject.transform.parent.parent.GetComponent<NoteCommands>().noteId.ToString());
+        dbconnection.deleteNote(GazeManager.Instance.HitObject.GetComponentInChildren<NoteCommands>().noteId.ToString());
     }
 
     public void getNotes()
