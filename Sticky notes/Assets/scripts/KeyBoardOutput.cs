@@ -33,7 +33,8 @@ public class KeyBoardOutput : MonoBehaviour {
         keyboardText = GameObject.Find("KeyboardText");
        
         notepad = notepadGaze;
-        keyboardText.GetComponentInChildren<Text>().text = notepad.GetComponent<Text>().text + cursor;
+        Debug.Log(notepad.name);
+        keyboardText.GetComponentInChildren<Text>().text = notepad.GetComponentInChildren<Text>().text + cursor;
 
     }
     
@@ -60,13 +61,12 @@ public class KeyBoardOutput : MonoBehaviour {
     public void Enter() {
         
         keyboardText = GameObject.Find("KeyboardText");
-        Destroy(keyboard.gameObject);
         VoiceCommands.keyboardCreated = false;
         string text = keyboardText.GetComponentInChildren<Text>().text;
         text = text.Substring(0, text.Length - 1);
-        notepad.GetComponent<Text>().text = text;
-        Debug.Log(notepad.transform.parent.parent.GetComponent<NoteCommands>().noteId.ToString());
-        dbconnection.editNote(notepad.transform.parent.parent.gameObject.GetComponent<NoteCommands>().noteId.ToString(), text);
+        notepad.GetComponentInChildren<Text>().text = text;
+        dbconnection.editNote(notepad.transform.parent.gameObject.GetComponent<NoteCommands>().noteId.ToString(), text);
+        Destroy(keyboard.gameObject);
     }
 
     //Changes the case of letters, from upper to lower and vice versa.

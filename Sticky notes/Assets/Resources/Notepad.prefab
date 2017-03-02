@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 223184841710840734}
   - component: {fileID: 114645400309602676}
   - component: {fileID: 114382568147131218}
+  - component: {fileID: 65945861619150108}
+  - component: {fileID: 114754255242759294}
   m_Layer: 5
   m_Name: Notepad
   m_TagString: Untagged
@@ -166,6 +168,7 @@ GameObject:
   - component: {fileID: 114111244727203898}
   - component: {fileID: 114100463623218914}
   - component: {fileID: 114477531746468454}
+  - component: {fileID: 114467339948053770}
   m_Layer: 5
   m_Name: EditCanvas
   m_TagString: Untagged
@@ -268,6 +271,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0975529, y: 0.03625827, z: 0.8674275}
   m_Center: {x: 0.00044763088, y: 0.01122774, z: 0}
+--- !u!65 &65945861619150108
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412664505275914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50, y: 50, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114044743516540614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,6 +450,21 @@ MonoBehaviour:
   m_Text: 'Edit
 
 '
+--- !u!114 &114467339948053770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499227530003274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbad991a9894486418e4988222483ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavedAnchorFriendlyName: SavedAnchorFriendlyName
+  PlaceParentOnTap: 0
+  ParentGameObjectToPlace: {fileID: 0}
+  IsBeingPlaced: 0
 --- !u!114 &114477531746468454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -536,6 +566,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114754255242759294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412664505275914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbad991a9894486418e4988222483ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavedAnchorFriendlyName: SavedAnchorFriendlyName
+  PlaceParentOnTap: 0
+  ParentGameObjectToPlace: {fileID: 0}
+  IsBeingPlaced: 0
 --- !u!114 &114764553520899140
 MonoBehaviour:
   m_ObjectHideFlags: 1

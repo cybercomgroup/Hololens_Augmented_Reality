@@ -23,12 +23,12 @@ public class VoiceCommands : MonoBehaviour
         
     }
 
-    public void editNote()
+    public void editNote()  
     {
         if (GazeManager.Instance.IsGazingAtObject && !keyboardCreated)
         {
             keyboardCreated = true;
-            KeyBoardOutput.createKeyboard(GazeManager.Instance.HitObject);
+            KeyBoardOutput.createKeyboard(GazeManager.Instance.HitObject.transform.GetChild(0).GetChild(0).gameObject);
         }
 
     }
@@ -40,24 +40,22 @@ public class VoiceCommands : MonoBehaviour
             GameObject notepad = Instantiate(Notepad, Camera.main.transform.position + 2f * Camera.main.transform.forward, Quaternion.identity) as GameObject;
             notepad.GetComponentInChildren<NoteCommands>().noteId = Int32.Parse(id);
         }, ""));
-      
-        
-            
+
     }
 
     public void deleteNote()
     {
         if (GazeManager.Instance.IsGazingAtObject)
         {
-            Destroy(GazeManager.Instance.HitObject.transform.parent.parent.gameObject);
+            Destroy(GazeManager.Instance.HitObject.gameObject);
         }
-        dbconnection.deleteNote(GazeManager.Instance.HitObject.transform.parent.parent.GetComponent<NoteCommands>().noteId.ToString());
+        dbconnection.deleteNote(GazeManager.Instance.HitObject.transform.GetChild(0).GetComponent<NoteCommands>().noteId.ToString());
     }
 
     public void getNotes()
     {
         StartCoroutine(dbselect.Start1((note) => {
-        GameObject notepad;
+            GameObject notepad;
             for (int i = 0; i < note.Notes.Count; i++)
             {
                 notepad = Instantiate(Notepad, Camera.main.transform.position + Camera.main.transform.right * (0.3f * i) + 2f * Camera.main.transform.forward, Quaternion.identity) as GameObject;
