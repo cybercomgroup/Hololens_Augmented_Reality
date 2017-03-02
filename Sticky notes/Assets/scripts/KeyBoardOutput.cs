@@ -34,7 +34,6 @@ public class KeyBoardOutput : MonoBehaviour {
        
         notepad = notepadGaze;
         keyboardText.GetComponentInChildren<Text>().text = notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text + cursor;
-
     }
     
     //Used to register the cicks of letters, symbols and space.
@@ -58,14 +57,14 @@ public class KeyBoardOutput : MonoBehaviour {
     //Registers the click of the Enter button, moves the text from the textfield to any text field you supply
     //then simply removes the keyboard from the view.
     public void Enter() {
-        Debug.Log(notepad.transform.GetChild(0).GetChild(0).name);
         keyboardText = GameObject.Find("KeyboardText");
-        Destroy(keyboard.gameObject);
         VoiceCommands.keyboardCreated = false;
         string text = keyboardText.GetComponentInChildren<Text>().text;
         text = text.Substring(0, text.Length - 1);
         notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = text;
         dbconnection.editNote(notepad.transform.GetChild(0).gameObject.GetComponent<NoteCommands>().noteId.ToString(), text);
+        Destroy(keyboard.gameObject);
+
     }
 
     //Changes the case of letters, from upper to lower and vice versa.

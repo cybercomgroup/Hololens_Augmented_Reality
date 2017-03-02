@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 114111244727203898}
   - component: {fileID: 114100463623218914}
   - component: {fileID: 114477531746468454}
+  - component: {fileID: 114467339948053770}
   m_Layer: 5
   m_Name: EditCanvas
   m_TagString: Untagged
@@ -448,6 +449,21 @@ MonoBehaviour:
   m_Text: 'Edit
 
 '
+--- !u!114 &114467339948053770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499227530003274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbad991a9894486418e4988222483ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavedAnchorFriendlyName: SavedAnchorFriendlyName
+  PlaceParentOnTap: 0
+  ParentGameObjectToPlace: {fileID: 0}
+  IsBeingPlaced: 0
 --- !u!114 &114477531746468454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,6 +565,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114754255242759294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412664505275914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbad991a9894486418e4988222483ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavedAnchorFriendlyName: SavedAnchorFriendlyName
+  PlaceParentOnTap: 0
+  ParentGameObjectToPlace: {fileID: 0}
+  IsBeingPlaced: 0
 --- !u!114 &114764553520899140
 MonoBehaviour:
   m_ObjectHideFlags: 1
