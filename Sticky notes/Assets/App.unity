@@ -359,7 +359,7 @@ Prefab:
     - target: {fileID: 114433167662071044, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
       propertyPath: autoStartObserver
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114541155181869830, guid: 3418407910415e44ca5e666938c18c72,
         type: 2}
@@ -482,6 +482,11 @@ Prefab:
       propertyPath: KeywordsAndResponses.Array.data[3].Response.m_TypeName
       value: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114433167662071044, guid: 3418407910415e44ca5e666938c18c72,
+        type: 2}
+      propertyPath: drawVisualMeshes
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3418407910415e44ca5e666938c18c72, type: 2}

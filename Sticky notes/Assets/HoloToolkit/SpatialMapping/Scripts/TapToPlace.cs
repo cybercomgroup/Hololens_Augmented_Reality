@@ -64,7 +64,7 @@ namespace HoloToolkit.Unity.SpatialMapping
 
             if (anchorManager != null && spatialMappingManager != null)
             {
-                anchorManager.AttachAnchor(gameObject, SavedAnchorFriendlyName);
+               // anchorManager.AttachAnchor(gameObject, SavedAnchorFriendlyName);
             }
             else
             {

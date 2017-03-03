@@ -92,7 +92,8 @@ namespace HoloToolkit.Unity
                     TagalongDistance = Mathf.Min(defaultTagalongDistance, Vector3.Distance(Camera.main.transform.position, newPosition));
                 }
             }
-            transform.rotation = Quaternion.LookRotation(Camera.main.transform.position);
+            transform.LookAt(Vector3.zero);
+            transform.RotateAround(transform.position, transform.up, 180f);
         }
 
         protected override bool CalculateTagalongTargetPosition(Vector3 fromPosition, out Vector3 toPosition)

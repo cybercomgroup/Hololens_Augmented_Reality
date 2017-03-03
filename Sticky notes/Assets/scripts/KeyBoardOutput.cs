@@ -33,7 +33,7 @@ public class KeyBoardOutput : MonoBehaviour {
         keyboardText = GameObject.Find("KeyboardText");
        
         notepad = notepadGaze;
-        keyboardText.GetComponentInChildren<Text>().text = notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text + cursor;
+        keyboardText.GetComponentInChildren<Text>().text = notepad.GetComponentInChildren<Text>().text + cursor;
     }
     
     //Used to register the cicks of letters, symbols and space.
@@ -58,11 +58,12 @@ public class KeyBoardOutput : MonoBehaviour {
     //then simply removes the keyboard from the view.
     public void Enter() {
         keyboardText = GameObject.Find("KeyboardText");
+        Debug.Log(notepad.gameObject.name);
         VoiceCommands.keyboardCreated = false;
         string text = keyboardText.GetComponentInChildren<Text>().text;
         text = text.Substring(0, text.Length - 1);
-        notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = text;
-        dbconnection.editNote(notepad.transform.GetChild(0).gameObject.GetComponent<NoteCommands>().noteId.ToString(), text);
+        notepad.GetComponentInChildren<Text>().text = text;
+        dbconnection.editNote(notepad.transform.parent.GetComponent<NoteCommands>().noteId.ToString(), text);
         Destroy(keyboard.gameObject);
 
     }
