@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 23570022851773148}
   - component: {fileID: 65358635550575108}
   - component: {fileID: 222636348882273440}
-  - component: {fileID: 114809049051182292}
   - component: {fileID: 114049445557593884}
+  - component: {fileID: 114903102279123806}
   m_Layer: 0
   m_Name: Notepad
   m_TagString: Untagged
@@ -581,17 +581,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114809049051182292
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1331465993241868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f122ca4ae6b527e4798205becf9a0550, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114838522075842960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -613,6 +602,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114903102279123806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331465993241868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f122ca4ae6b527e4798205becf9a0550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212117693341823062
 SpriteRenderer:
   m_ObjectHideFlags: 1

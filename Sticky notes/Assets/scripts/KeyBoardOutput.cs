@@ -18,8 +18,10 @@ public class KeyBoardOutput : MonoBehaviour {
     //private float blink_TimeStamp;
     //static float typing_TimeStamp;
     //private bool cursor_set = true;
-    private bool symbol = false;
     //public static bool typing = false;
+
+    private bool symbol = false;
+    
 
     //Initilizes the keyboard with the text cursor
     public void Start()
@@ -111,7 +113,6 @@ public class KeyBoardOutput : MonoBehaviour {
     //Changes the letters to symbols and back.
     public void symbols()
     {
-        //GameObject keyboard = GameObject.Find("KeyboardCanvas");
         string[] symbols = { "+", "*", "/", "=", "%", "_", "€", "£", "$", "[", "]", "#", "¤", "&", "(", ")", "{", "}",
                             "^", "¨", "~", "\"", "|", "´", "°", "<", ">", ";","½"};
         string[] letters = { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å", "a", "s", "d", "f", "g", "h", "j",
@@ -141,7 +142,7 @@ public class KeyBoardOutput : MonoBehaviour {
     } 
 
     //Will be used to navigate the text string so you can edit the text more freely.
-    //Needs to be implemented
+    //Needs to be implemented.
     public void navigate()
     {
         keyboardText = GameObject.Find("KeyboardText");

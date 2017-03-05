@@ -48,6 +48,8 @@ namespace HoloToolkit.Unity
         [Tooltip("Useful for visualizing the Raycasts used for determining the depth to place the Tagalong. Set to 'None' to disable.")]
         public Light DebugPointLight;
 
+        
+
         protected override void Start()
         {
             base.Start();
@@ -73,6 +75,7 @@ namespace HoloToolkit.Unity
             {
                 gameObject.AddComponent<FixedAngularSize>();
             }
+            //transform.rotation *= Quaternion.Euler(0, 180f, 0);
         }
 
         protected override void Update()
@@ -92,8 +95,9 @@ namespace HoloToolkit.Unity
                     TagalongDistance = Mathf.Min(defaultTagalongDistance, Vector3.Distance(Camera.main.transform.position, newPosition));
                 }
             }
-            transform.LookAt(Vector3.zero);
-            transform.RotateAround(transform.position, transform.up, 180f);
+            transform.LookAt(2*transform.position-Camera.main.transform.position);
+            
+            //transform.RotateAround(transform.position, transform.up, 180f);
         }
 
         protected override bool CalculateTagalongTargetPosition(Vector3 fromPosition, out Vector3 toPosition)
