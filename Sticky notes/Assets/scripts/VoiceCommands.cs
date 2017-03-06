@@ -44,8 +44,8 @@ public class VoiceCommands : MonoBehaviour
     {
         StartCoroutine(dbconnection.insertString((id) =>
         {
-            GameObject notepad = Instantiate(Notepad, Camera.main.transform.position + 2f * Camera.main.transform.forward , Camera.main.transform.rotation) as GameObject;
-            //notepad.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - notepad.transform.position);
+            Quaternion lockrotation = Camera.main.transform.localRotation;
+            GameObject notepad = Instantiate(Notepad, Camera.main.transform.position + 2f * Camera.main.transform.forward, Quaternion.Euler(lockrotation.eulerAngles.x, lockrotation.eulerAngles.y, 0)) as GameObject;
             notepad.GetComponentInChildren<NoteCommands>().noteId = Int32.Parse(id);
         }, ""));
 
@@ -74,7 +74,7 @@ public class VoiceCommands : MonoBehaviour
             GameObject notepad;
             for (int i = 0; i < note.Notes.Count; i++)
             {
-                notepad = Instantiate(Notepad, Camera.main.transform.position + Camera.main.transform.right * (0.3f * i) + 2f * Camera.main.transform.forward, Camera.main.transform.rotation) as GameObject;
+                notepad = Instantiate(Notepad, Camera.main.transform.position + Camera.main.transform.right*i*0.3f + 2f * Camera.main.transform.forward, Camera.main.transform.localRotation) as GameObject;
                 notepad.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = note.Notes[i].content;
                 notepad.GetComponentInChildren<NoteCommands>().noteId = i + 1;
             }
