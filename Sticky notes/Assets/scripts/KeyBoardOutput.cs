@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using System.Text;
 using conn;
 //using System.Timers;
 
@@ -22,8 +19,6 @@ public class KeyBoardOutput : MonoBehaviour {
 
     private bool symbol = false;
     
-
-    //Initilizes the keyboard with the text cursor
     public void Start()
     {
         dbconnection = new connect();

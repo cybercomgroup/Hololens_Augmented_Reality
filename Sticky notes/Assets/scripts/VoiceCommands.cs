@@ -4,7 +4,6 @@ using HoloToolkit.Unity.InputModule;
 using UnityEngine.UI;
 using conn;
 using selectnotes;
-using System.Collections.Generic;
 
 public class VoiceCommands : MonoBehaviour
 {
