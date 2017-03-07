@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114953662029140404}
   - component: {fileID: 114103665495488134}
   - component: {fileID: 114541155181869830}
+  - component: {fileID: 114831449173337136}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -807,7 +808,7 @@ MonoBehaviour:
   PhysicsLayer: 31
   surfaceMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
   autoStartObserver: 1
-  drawVisualMeshes: 1
+  drawVisualMeshes: 0
   castShadows: 0
 --- !u!114 &114541155181869830
 MonoBehaviour:
@@ -827,9 +828,62 @@ MonoBehaviour:
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 114841387491082598, guid: 3b6a438b056888c488e297a6991e0334,
-            type: 2}
+        - m_Target: {fileID: 114831449173337136}
           m_MethodName: makeNew
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: Edit note
+    KeyCode: 0
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114831449173337136}
+          m_MethodName: editNote
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: Remove note
+    KeyCode: 0
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114831449173337136}
+          m_MethodName: deleteNote
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: Get all notes
+    KeyCode: 0
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114831449173337136}
+          m_MethodName: getNotes
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -958,6 +1012,19 @@ MonoBehaviour:
   HandDownTexture: {fileID: 2800000, guid: d84aac8e3bc8fe344b50dab1e7382ad7, type: 3}
   LeftHandInView: 0
   RightHandInView: 0
+--- !u!114 &114831449173337136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073881161640376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67bdff9a98f03d2439ad162786698d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Notepad: {fileID: 1412664505275914, guid: 3b6a438b056888c488e297a6991e0334, type: 2}
+  keyboard: {fileID: 1002140743540880, guid: 9d7c8e2e0e8880e4ea74a487357e6723, type: 2}
 --- !u!114 &114920384034997974
 MonoBehaviour:
   m_ObjectHideFlags: 1
